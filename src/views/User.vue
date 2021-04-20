@@ -2,11 +2,11 @@
   <div>
     <div class="title">用户登录</div>
     <van-form @submit="onSubmit">
-      <van-field v-model="username" name="用户名" label="用户名" :rules="[{ required: true, message: '请填写用户名' }]"/>
-      <van-field v-model="password" type="password" name="密码" label="密码" :rules="[{ required: true, message: '请填写密码' }]"/>
+      <van-field v-model="username" label="用户名" left-icon="user-o" placeholder="请输入用户名/邮箱" :rules="[{ required: true, message: '用户名不能为空' }]"/>
+      <van-field v-model="password" label="密码" left-icon="smile-o" placeholder="请输入密码" type="password"  :rules="[{ required: true, message: '密码不能为空' }]"/>
       <div class="btn-group">
         <van-button class="btn" round block type="danger" native-type="submit">登录</van-button>
-        <van-button class="btn" round block plain type="danger" native-type="submit">注册</van-button>
+        <van-button class="btn" round block plain type="danger">注册</van-button>
       </div>
     </van-form>
   </div>

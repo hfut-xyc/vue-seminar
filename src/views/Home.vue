@@ -1,17 +1,31 @@
 <template>
   <div>
-    <report v-for="item in reportList" v-bind:content="item"/>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <report v-for="item in reportList" :key="item.time" v-bind:content="item"/>
+    </van-pull-refresh>
   </div>
 </template>
 
 <script>
 
   import Report from "../components/Report";
+  import Toast from "vant/lib/toast";
+
   export default {
     name: 'Home',
-    components: {Report},
+    components: {
+      "report": Report
+    },
+    methods: {
+      onRefresh() {
+        this.isLoading = true;
+        Toast('刷新成功');
+        this.isLoading = false;
+      }
+    },
     data() {
       return {
+        isLoading: false,
         reportList: [
           {
             "title": "基于生成对抗网络的目标分割",
