@@ -18,7 +18,6 @@
           <van-cell title="哈尔滨"/>
           <van-cell title="杭州"/>
           <van-cell title="合肥"/>
-
         </van-index-bar>
       </van-tab>
       <van-tab title="学科分类">
@@ -28,7 +27,7 @@
               <van-grid-item icon="photo-o" text="机器学习"/>
               <van-grid-item icon="photo-o" text="数据挖掘"/>
               <van-grid-item icon="photo-o" text="计算机视觉"/>
-              <van-grid-item icon="photo-o" text="信息检索"/>
+              <van-grid-item icon="photo-o" text="自然语言处理"/>
             </van-grid>
           </van-collapse-item>
           <van-collapse-item title="计算机系统" name="1">
@@ -60,38 +59,6 @@
       return {
         active: 0,
         activeCategory: ['0'],
-        cities: [
-          {
-            text: '直辖市', children: [
-              {
-                text: '北京',
-                id: 0
-              },
-              {
-                text: '上海',
-                id: 1
-              },
-              {
-                text: '天津',
-                id: 2
-              },
-              {
-                text: '重庆',
-                id: 3
-              }]
-          },
-          {
-            text: '安徽省', children: [
-              {
-                text: '合肥',
-                id: 0
-              },
-              {
-                text: '芜湖',
-                id: 1
-              }]
-          },
-        ]
       }
     }
   }
