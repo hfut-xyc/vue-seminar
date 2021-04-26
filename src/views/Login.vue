@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="title">用户登录</div>
-    <van-form>
+    <van-form @submit="onSubmit">
       <van-field
         v-model="username" name="username"
         label="用户名" placeholder="请输入用户名"
@@ -14,13 +14,14 @@
         left-icon="smile-o" type="password"
         :rules="[{ required: true, message: '密码不能为空' }]"
       />
+      <div class="btn-group">
+        <van-button class="btn" native-type="submit" type="danger" round block>登录</van-button>
+        <van-button class="btn" @click="onReset" type="danger" round block plain>重置</van-button>
+      </div>
     </van-form>
-    <div class="btn-group">
-      <van-button class="btn" @click="onSubmit" type="danger" round block>登录</van-button>
-      <van-button class="btn" @click="onReset" type="danger" round block plain>重置</van-button>
-    </div>
+
     <div class="register-link">
-      <a href="/register" style="color: orangered; font-weight: bold">没有账户？先去注册</a>
+      <a @click="onJump" href="javascript:void(0)" style="color: orangered; font-weight: bold">没有账户？先去注册</a>
     </div>
   </div>
 </template>
@@ -35,13 +36,18 @@
       }
     },
     methods: {
-      onSubmit() {
-        this.$router.replace("/home")
+      onSubmit(form) {
+        console.log(form);
+        this.$router.replace("/home");
       },
 
       onReset() {
         this.username = "";
         this.password = "";
+      },
+
+      onJump() {
+        this.$router.push("/register")
       }
     }
   }

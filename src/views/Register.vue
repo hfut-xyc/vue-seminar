@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="title">用户注册</div>
-    <van-form>
+    <van-form @submit="onSubmit">
       <van-field
         v-model="username" name="username"
         label="用户名" placeholder="请输入用户名"
@@ -19,10 +19,11 @@
         left-icon="smile-o" type="password"
         :rules="[{ required: true, message: '密码不能为空' }]"
       />
+      <div class="btn-group">
+        <van-button class="btn" native-type="submit" type="danger" round block>立即注册</van-button>
+      </div>
     </van-form>
-    <div class="btn-group">
-      <van-button class="btn" @click="onSubmit" type="danger" round block>立即注册</van-button>
-    </div>
+
   </div>
 </template>
 
@@ -37,9 +38,10 @@
       }
     },
     methods: {
-      onSubmit() {
-        this.$router.replace("/login")
-      }
+      onSubmit(form) {
+        console.log(form);
+        this.$router.replace("/login");
+      },
     }
   }
 </script>
