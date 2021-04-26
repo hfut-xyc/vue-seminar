@@ -1,37 +1,60 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
+import Login from '../views/Login.vue'
+import Register from '../views/Register.vue'
 import Home from '../views/Home.vue'
-import Recommend from '../views/Recommend.vue'
-import Sort from '../views/Sort.vue'
-import User from '../views/User.vue'
+import Index from '../views/Index'
+import Category from '../views/Category.vue'
+import Notify from '../views/Notify.vue'
+import Profile from '../views/Profile.vue'
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    redirect: '/login'
   },
   {
-    path: '/recommend',
-    name: 'recommend',
-    component: Recommend
+    path: '/login',
+    component: Login,
   },
   {
-    path: '/sort',
-    name: 'Sort',
-    component: Sort
+    path: "/register",
+    component: Register
   },
   {
-    path: '/user',
-    name: 'User',
-    component: User
+    path: '/home',
+    component: Home,
+    children: [
+      {
+        path: '',
+        redirect: 'index'
+      },
+      {
+        path: 'index',
+        component: Index
+      },
+      {
+        path: 'category',
+        component: Category
+      },
+      {
+        path: 'notify',
+        component: Notify
+      },
+      {
+        path: "profile",
+        component: Profile
+      }
+    ]
   }
 ];
 
 const router = new VueRouter({
-  routes
+  mode: 'history',
+  routes: routes
 });
 
 export default router
