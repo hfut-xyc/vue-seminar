@@ -1,7 +1,10 @@
 <template>
   <div>
-    <div class="nav-bar"><van-icon name="search" />报告汇</div>
-    <router-view/>
+    <div class="nav-bar">
+      <van-icon name="search"/>
+      <span>报告汇</span>
+    </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -18,7 +21,6 @@
 </style>
 
 <script>
-
   export default {
     name: 'App',
     data() {

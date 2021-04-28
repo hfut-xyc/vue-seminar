@@ -1,8 +1,8 @@
 <template>
   <div>
-    <van-tabs v-model="active">
+    <van-tabs v-model="activeTab">
       <van-tab title="学科分类">
-        <van-collapse v-model="activeCategory">
+        <van-collapse v-model="activePanel">
           <van-collapse-item title="人工智能" name="0">
             <van-grid :gutter="10">
               <van-grid-item icon="photo-o" text="机器学习"/>
@@ -81,8 +81,8 @@
     name: "Category",
     data() {
       return {
-        active: 0,
-        activeCategory: ['0', '1', '2']
+        activeTab: 0,
+        activePanel: ['0', '1', '2']
       }
     }
   }
