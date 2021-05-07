@@ -1,15 +1,16 @@
 <template>
   <div>
     <div class="user-info">
-      <img class="avatar" :src="avatar">
+      <img class="avatar" :src="avatar" alt="404"/>
       <span class="username">{{username}}</span>
       <van-tag class="uid" type="danger" round size="large">UID: {{id}}</van-tag>
     </div>
     <van-cell-group>
-      <van-cell title="关注学科" is-link size="large" icon="aim" />
-      <van-cell title="关注城市" is-link size="large" icon="location-o" />
-      <van-cell title="我的收藏" is-link size="large" icon="star-o" />
+      <van-cell title="关注城市" to="/fav/city" is-link size="large" icon="location-o" />
+      <van-cell title="关注学科" to="/fav/subject" is-link size="large" icon="aim" />
+      <van-cell title="收藏报告" to="/fav/report" is-link size="large" icon="star-o" />
       <van-cell title="设置" center is-link size="large" icon="setting-o"/>
+      <van-cell title="注销" center is-link size="large" icon="delete-o"/>
       <van-cell title="关于" center is-link size="large" icon="info-o"/>
     </van-cell-group>
   </div>

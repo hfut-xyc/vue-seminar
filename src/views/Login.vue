@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div class="title">用户登录</div>
+    <div class="nav-bar">
+      <van-icon name="friends-o" />
+      <span class="nav-title">用户登录</span>
+    </div>
+    <div class="title">Sign In</div>
     <van-form @submit="onSubmit">
       <van-field
         v-model="username" name="username"
@@ -19,9 +23,8 @@
         <van-button class="btn" @click="onReset" type="danger" round block plain>重置</van-button>
       </div>
     </van-form>
-
-    <div class="register-link">
-      <a @click="onJump" href="javascript:void(0)" style="color: orangered; font-weight: bold">没有账户？先去注册</a>
+    <div class="register">
+      <a class="register-link" @click="onJump" href="javascript:void(0)">没有账户？先去注册</a>
     </div>
   </div>
 </template>
@@ -54,6 +57,20 @@
 </script>
 
 <style scoped>
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    padding: 15px 10px 15px;
+    background-color: #e60001;
+    font-size: large;
+    font-weight: bold;
+    color: white;
+  }
+
+  .nav-title {
+    margin-left: 5px;
+  }
+
   .title {
     text-align: center;
     font-size: large;
@@ -73,9 +90,14 @@
     margin-right: 10px;
   }
 
-  .register-link {
-    margin-top: 10px;
+  .register {
+    margin-top: 20px;
     text-align: center;
+  }
+
+  .register-link {
+    color: #ff9d50;
+    font-weight: bold;
   }
 
 </style>

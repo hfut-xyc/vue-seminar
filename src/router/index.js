@@ -6,8 +6,11 @@ import Register from '../views/Register.vue'
 import Home from '../views/Home.vue'
 import Index from '../views/Index'
 import Category from '../views/Category.vue'
-import Notify from '../views/Notify.vue'
+import Notice from '../views/Notice.vue'
 import Profile from '../views/Profile.vue'
+import FavCity from "../views/FavCity";
+import FavSubject from "../views/FavSubject";
+import FavReport from "../views/FavReport";
 
 Vue.use(VueRouter);
 
@@ -23,6 +26,18 @@ const routes = [
   {
     path: "/register",
     component: Register
+  },
+  {
+    path: "/fav/city",
+    component: FavCity
+  },
+  {
+    path: "/fav/subject",
+    component: FavSubject
+  },
+  {
+    path: "/fav/report",
+    component: FavReport
   },
   {
     path: '/home',
@@ -41,8 +56,8 @@ const routes = [
         component: Category
       },
       {
-        path: 'notify',
-        component: Notify
+        path: 'notice',
+        component: Notice
       },
       {
         path: "profile",

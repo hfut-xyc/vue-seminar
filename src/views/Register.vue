@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div class="title">用户注册</div>
+    <div class="nav-bar">
+      <van-icon name="edit" />
+      <span class="nav-title">用户注册</span>
+    </div>
+    <div class="title">Sign Up</div>
     <van-form @submit="onSubmit">
       <van-field
         v-model="username" name="username"
@@ -21,6 +25,7 @@
       />
       <div class="btn-group">
         <van-button class="btn" native-type="submit" type="danger" round block>立即注册</van-button>
+        <van-button class="btn" @click="onReturn" type="danger" plain round block>返回</van-button>
       </div>
     </van-form>
 
@@ -40,13 +45,30 @@
     methods: {
       onSubmit(form) {
         console.log(form);
-        this.$router.replace("/login");
+        this.$router.push("/login");
       },
+      onReturn() {
+        this.$router.push("/login")
+      }
     }
   }
 </script>
 
 <style scoped>
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    padding: 15px 10px 15px;
+    background-color: #e60001;
+    font-size: large;
+    font-weight: bold;
+    color: white;
+  }
+
+  .nav-title {
+    margin-left: 5px;
+  }
+
   .title {
     text-align: center;
     font-size: large;

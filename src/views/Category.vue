@@ -82,7 +82,7 @@
     data() {
       return {
         activeTab: 0,
-        activePanel: ['0', '1', '2']
+        activePanel: []
       }
     }
   }
