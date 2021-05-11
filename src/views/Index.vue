@@ -1,9 +1,7 @@
 <template>
-  <div>
+  <div class="container">
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
-      <div class="container">
-        <report v-for="item in reportList" :key="item.id" :report="item"/>
-      </div>
+      <report v-for="item in reportList" :key="item.id" :report="item"/>
     </van-pull-refresh>
   </div>
 </template>
@@ -59,4 +57,7 @@
 </script>
 
 <style>
+  .container {
+    background-color: #ededed;
+  }
 </style>

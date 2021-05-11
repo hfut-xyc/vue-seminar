@@ -23,14 +23,13 @@
       return {
         id: "1000",
         username: "测试用户",
-        avatar: ""
+        avatar: "/avatar.png"
       }
     }
   }
 </script>
 
 <style scoped>
-
   .user-info {
     display: flex;
     flex-direction: row;
