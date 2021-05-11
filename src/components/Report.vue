@@ -41,17 +41,18 @@
   export default {
     name: "Report",
     props: {
-      report: Object
+      report: Object,
+      star: Boolean
     },
     data() {
       return {
-        star: false
+
       }
     },
     mounted() {
-      this.$axios.get("/user/1/report/" + this.report.id).then(res => {
-        this.star = (res.data.data !== null)
-      })
+      // this.$axios.get("/user/1/report/" + this.report.id).then(res => {
+      //   this.star = (res.data.data !== null)
+      // })
     },
     methods: {
       starReport() {

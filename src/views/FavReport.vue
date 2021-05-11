@@ -1,7 +1,7 @@
 <template>
   <div>
     <van-nav-bar title="我的收藏" @click-left="onClickLeft" left-text="返回" left-arrow />
-    <report v-for="item in reportList" :key="item.id" :report="item"/>
+    <report v-for="item in favList" :key="item.id" :report="item" :star="true"/>
   </div>
 </template>
 
@@ -15,21 +15,21 @@
     },
     data() {
       return {
-        reportList: []
+        favList: []
       }
     },
     mounted() {
-      this.getReportList();
+      this.getFavReportList();
     },
 
     methods: {
-      getReportList() {
+      getFavReportList() {
         this.$axios.get("/user/1/report/fav").then(res => {
           console.log(res)
-          this.reportList = res.data.data;
+          this.favList = res.data.data;
           this.$toast(res.data.message)
         }).catch(err => {
-
+          this.$toast.fail("请求已超时")
         })
       },
       onClickLeft() {
