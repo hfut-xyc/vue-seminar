@@ -35,7 +35,6 @@
     font-size: large;
     font-weight: bold;
     color: white;
-
   }
 
   .title {

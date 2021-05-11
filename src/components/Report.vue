@@ -2,15 +2,21 @@
   <div class="report-container">
     <div class="report-title">{{report.title}}</div>
     <div class="report-info">
-      <van-icon name="manager"/>
-      <span>汇报人：{{report.speaker}}</span></div>
+      <van-icon name="chat-o" color="red"/>
+      <span class="report-prop">汇报人：</span>
+      <span>{{report.speaker}}</span>
+    </div>
     <div class="report-info">
-      <van-icon name="clock"/>
-      <span>时间：{{report.time}}</span></div>
+      <van-icon name="clock-o" color="red"/>
+      <span class="report-prop">时间：</span>
+      <span>{{report.time}}</span>
+    </div>
     <div class="report-info">
-      <van-icon name="location"/>
-      <span>地点：{{report.location}}</span></div>
-    <div class="action-container">
+      <van-icon name="location-o" color="red"/>
+      <span class="report-prop">地点：</span>
+      <span>{{report.location}}</span>
+    </div>
+    <div class="report-action">
       <div class="action-item" v-if="star">
         <van-icon name="star" color="orange" size="22px" @click="starReport"/>
         <span>取消收藏</span>
@@ -21,9 +27,10 @@
       </div>
       <div class="action-item">
         <van-icon name="share-o" color="#ff0e00" size="22px"/>
-        <span>分享</span></div>
+        <span>分享</span>
+      </div>
       <div class="action-item">
-        <van-icon name="eye-o" color="#00a2ff" size="22px"/>
+        <van-icon name="eye-o" color="#409eff" size="22px"/>
         <span>浏览量：--</span>
       </div>
     </div>
@@ -42,9 +49,8 @@
       }
     },
     mounted() {
-      this.$axios.get("/user/1/report/" + this.report.id)
-      .then(res => {
-        this.star = res.data.data !== null
+      this.$axios.get("/user/1/report/" + this.report.id).then(res => {
+        this.star = (res.data.data !== null)
       })
     },
     methods: {
@@ -68,17 +74,20 @@
   .report-container {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
-    border-bottom: 2px solid #ededed;
+    margin: 10px 8px;
+    padding: 10px;
+    border: 1px solid #ededed;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px #cccccc;
+    background-color: white;
   }
 
   .report-title {
     display: flex;
     font-size: 16px;
     font-weight: bolder;
-    margin-left: 15px;
     margin-bottom: 8px;
-    color: #ef3e34;
+    color: #e00600;
   }
 
   .report-info {
@@ -86,15 +95,17 @@
     flex-direction: row;
     align-items: center;
     font-size: 15px;
-    margin-left: 15px;
     margin-bottom: 10px;
   }
 
-  .action-container {
+  .report-prop {
+    font-weight: bold;
+    margin-left: 3px;
+  }
+
+  .report-action {
     display: flex;
     flex-direction: row;
-    margin-left: 15px;
-    margin-bottom: 10px;
   }
 
   .action-item {
