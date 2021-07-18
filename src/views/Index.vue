@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
-      <report v-for="item in reportList" :key="item.id" :report="item" :star="hasStar(item.id)"/>
+      <report v-for="item in reportList" :key="item.id" :report="item"/>
     </van-pull-refresh>
   </div>
 </template>
@@ -24,7 +24,6 @@
 
     mounted() {
       this.getReportList(false);
-      this.getFavReportList();
     },
 
     methods: {
@@ -34,16 +33,6 @@
             this.shuffle(res.data.data)
           }
           this.reportList = res.data.data;
-          this.$toast(res.data.message)
-        }).catch(err => {
-          this.$toast.fail("请求已超时")
-        })
-      },
-
-      getFavReportList() {
-        this.$axios.get("/user/1/report/fav").then(res => {
-          console.log(res)
-          this.favList = res.data.data;
           this.$toast(res.data.message)
         }).catch(err => {
           this.$toast.fail("请求已超时")
@@ -63,15 +52,6 @@
           array[len] = array[cur];
           array[cur] = pre;
         }
-      },
-
-      hasStar(id) {
-        for (let i = 0; i < this.favList.length; i++) {
-          if (this.favList[i]['id'] === id) {
-            return true;
-          }
-        }
-        return false;
       }
     }
   }

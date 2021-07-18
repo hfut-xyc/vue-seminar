@@ -23,7 +23,7 @@
       return {
         id: "1000",
         username: "测试用户",
-        avatar: "/avatar.png"
+        avatar: require("../assets/avatar.png")
       }
     }
   }

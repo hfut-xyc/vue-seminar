@@ -1,37 +1,35 @@
 <template>
   <div class="report-container">
     <div class="report-title">{{report.title}}</div>
-    <div class="report-info">
+<!--    -->
+    <div class="report-key-value">
       <van-icon name="chat-o" color="red"/>
-      <span class="report-prop">汇报人：</span>
+      <span class="report-key">汇报人：</span>
       <span>{{report.speaker}}</span>
     </div>
-    <div class="report-info">
+    <div class="report-key-value">
       <van-icon name="clock-o" color="red"/>
-      <span class="report-prop">时间：</span>
+      <span class="report-key">时间：</span>
       <span>{{report.time}}</span>
     </div>
-    <div class="report-info">
+    <div class="report-key-value">
       <van-icon name="location-o" color="red"/>
-      <span class="report-prop">地点：</span>
+      <span class="report-key">地点：</span>
       <span>{{report.location}}</span>
     </div>
+<!--    -->
     <div class="report-action">
-      <div class="action-item" v-if="star">
-        <van-icon name="star" color="orange" size="22px" @click="starReport"/>
-        <span>取消收藏</span>
-      </div>
-      <div class="action-item" v-else>
-        <van-icon name="star-o" color="orange" size="22px" @click="starReport"/>
-        <span>收藏</span>
-      </div>
       <div class="action-item">
-        <van-icon name="share-o" color="#ff0e00" size="22px"/>
-        <span>分享</span>
+        <van-icon name="star-o" color="orange" size="22px" />
+        <span>收藏量：--</span>
       </div>
       <div class="action-item">
         <van-icon name="eye-o" color="#409eff" size="22px"/>
         <span>浏览量：--</span>
+      </div>
+      <div class="action-item">
+        <van-icon name="share-o" color="#ff0e00" size="22px"/>
+        <span>分享</span>
       </div>
     </div>
   </div>
@@ -41,8 +39,7 @@
   export default {
     name: "Report",
     props: {
-      report: Object,
-      star: Boolean
+      report: Object
     },
     data() {
       return {
@@ -50,23 +47,10 @@
       }
     },
     mounted() {
-      // this.$axios.get("/user/1/report/" + this.report.id).then(res => {
-      //   this.star = (res.data.data !== null)
-      // })
+
     },
     methods: {
-      starReport() {
-        this.star = !this.star;
-        if (this.star) {
-          this.$axios.post("/user/1/report/fav?rid=" + this.report.id).then(res => {
-            this.$toast.success(res.data.message)
-          })
-        } else {
-          this.$axios.delete("/user/1/report/fav?rid=" + this.report.id).then(res => {
-            this.$toast.success(res.data.message)
-          })
-        }
-      }
+
     }
   }
 </script>
@@ -91,15 +75,16 @@
     color: #e00600;
   }
 
-  .report-info {
+  .report-key-value {
     display: flex;
     flex-direction: row;
     align-items: center;
     font-size: 15px;
     margin-bottom: 10px;
+    flex-wrap: wrap;
   }
 
-  .report-prop {
+  .report-key {
     font-weight: bold;
     margin-left: 3px;
   }
