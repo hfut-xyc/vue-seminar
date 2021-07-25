@@ -1,18 +1,8 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Router from 'vue-router'
+import { getToken, removeToken } from '@/utils/token'
 
-import Login from '../views/Login.vue'
-import Register from '../views/Register.vue'
-import Home from '../views/Home.vue'
-import Index from '../views/Index'
-import Category from '../views/Category.vue'
-import Notice from '../views/Notice.vue'
-import Profile from '../views/Profile.vue'
-import FavCity from "../views/FavCity";
-import FavSubject from "../views/FavSubject";
-import FavReport from "../views/FavReport";
-
-Vue.use(VueRouter);
+Vue.use(Router)
 
 const routes = [
   {
@@ -21,27 +11,39 @@ const routes = [
   },
   {
     path: '/login',
-    component: Login,
+    component: () => import('@/views/Login'),
   },
   {
     path: "/register",
-    component: Register
+    component: () => import('@/views/Register')
   },
   {
-    path: "/fav/city",
-    component: FavCity
+    path: "/report/:id",
+    component: () => import('@/views/ReportDetail')
   },
   {
-    path: "/fav/subject",
-    component: FavSubject
+    path: "/city/:id",
+    component: () => import('@/views/category/City')
+  },
+  {
+    path: "/subject/:id",
+    component: () => import('@/views/category/Subject')
   },
   {
     path: "/fav/report",
-    component: FavReport
+    component: () => import('@/views/profile/FavReport')
+  },
+  {
+    path: "/fav/city",
+    component: () => import('@/views/profile/FavCity')
+  },
+  {
+    path: "/fav/subject",
+    component: () => import('@/views/profile/FavSubject')
   },
   {
     path: '/home',
-    component: Home,
+    component: () => import('@/views/Home'),
     children: [
       {
         path: '',
@@ -49,26 +51,46 @@ const routes = [
       },
       {
         path: 'index',
-        component: Index
+        component: () => import('@/views/Index')
       },
       {
         path: 'category',
-        component: Category
+        component: () => import('@/views/category/Category')
       },
       {
         path: 'notice',
-        component: Notice
+        component: () => import('@/views/Notice')
       },
       {
         path: "profile",
-        component: Profile
+        component: () => import('@/views/profile/Profile')
       }
     ]
   }
-];
+]
 
-export default new VueRouter({
-  mode: 'history',
+const router = new Router({
+  mode: 'hash',
   routes: routes
-});
+})
 
+const whiteList = ['/login', '/register']
+
+router.beforeEach((to, from, next) => {
+  const hasToken = getToken()
+  if (hasToken) {
+    if (to.path === '/login') {
+      next("/home")
+    } else {
+      next()
+    }
+  } else {
+    if (whiteList.indexOf(to.path) !== -1) {
+      next()
+    } else {
+      next(`/login?redirect=${to.path}`)
+    }
+  }
+})
+
+export default router

@@ -1,7 +1,6 @@
 <template>
   <div class="report-container">
     <div class="report-title">{{report.title}}</div>
-<!--    -->
     <div class="report-key-value">
       <van-icon name="chat-o" color="red"/>
       <span class="report-key">汇报人：</span>
@@ -17,15 +16,10 @@
       <span class="report-key">地点：</span>
       <span>{{report.location}}</span>
     </div>
-<!--    -->
     <div class="report-action">
       <div class="action-item">
-        <van-icon name="star-o" color="orange" size="22px" />
-        <span>收藏量：--</span>
-      </div>
-      <div class="action-item">
         <van-icon name="eye-o" color="#409eff" size="22px"/>
-        <span>浏览量：--</span>
+        <span>浏览量：{{report.view}}</span>
       </div>
       <div class="action-item">
         <van-icon name="share-o" color="#ff0e00" size="22px"/>

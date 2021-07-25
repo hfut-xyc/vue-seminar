@@ -1,10 +1,11 @@
 <template>
   <div>
     <div class="nav-bar">
-      <van-icon name="friends-o" />
+      <van-icon name="friends-o"/>
       <span class="nav-title">用户登录</span>
     </div>
     <div class="title">Sign In</div>
+    <!--  Login Form  -->
     <van-form @submit="onSubmit">
       <van-field
         v-model="username" name="username"
@@ -40,8 +41,12 @@
     },
     methods: {
       onSubmit(form) {
-        console.log(form);
-        this.$router.replace("/home");
+        this.$store.dispatch('user/login', form).then(() => {
+          this.$router.replace("/home")
+        }).catch(err => {
+          console.log(err)
+          this.$toast.fail("登录失败")
+        })
       },
 
       onReset() {

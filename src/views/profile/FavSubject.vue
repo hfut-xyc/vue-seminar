@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-nav-bar title="学科关注" @click-left="onClickLeft" left-text="返回" left-arrow/>
+    <van-nav-bar title="我关注的学科" @click-left="onClickLeft" left-text="返回" left-arrow/>
     <van-checkbox-group v-model="favList">
       <van-cell-group>
         <van-cell v-for="item in subjectList" :key="item.id" :title="item.name" clickable>
@@ -14,41 +14,50 @@
 </template>
 
 <script>
+  import {getRequest, postRequest, deleteRequest} from '@/utils/request'
+
   export default {
     name: "FavSubject",
     data() {
       return {
         subjectList: [],
-        favList: []
+        favList: [],
+        id: this.$store.getters.id
       }
     },
 
     mounted() {
-      this.$axios.get("/subject/list").then(res => {
+      getRequest("/subject/list?type=2").then(res => {
         this.subjectList = res.data.data
         this.$toast(res.data.message)
+      }).catch(err => {
+        this.$toast.fail("请求异常")
       })
-      this.$axios.get("user/1/subject/fav").then(res => {
+
+      getRequest(`/user/${this.id}/subject/fav`).then(res => {
         this.favList = res.data.data
+      }).catch(err => {
+        this.$toast.fail("请求异常")
       })
     },
 
     methods: {
-      onClickLeft() {
-        this.$router.back()
-      },
-
       onToggle(item) {
         let flag = this.favList.indexOf(item.id)
+        let url = `/user/${this.id}/subject/fav?sid=${item.id}`
         if (flag !== -1) {
-          this.$axios.post("/user/1/subject/fav?sid=" + item.id).then(res => {
+          postRequest(url).then(res => {
             this.$toast(res.data.message)
           })
         } else {
-          this.$axios.delete("/user/1/subject/fav?sid=" + item.id).then(res => {
+          deleteRequest(url).then(res => {
             this.$toast(res.data.message)
           })
         }
+      },
+
+      onClickLeft() {
+        this.$router.back()
       }
     }
   }

@@ -1,9 +1,14 @@
+const path = require("path");
+
+function resolve(dir) {
+  return path.join(__dirname, dir);
+}
+
 module.exports = {
+  publicPath: './',
   devServer: {
     port: 8080,
-    https: false,
     open: true,
-
     proxy: {
       '/api': {
         target: 'http://localhost:8081',
@@ -11,6 +16,13 @@ module.exports = {
         pathRewrite: {
           '^/api': ''
         }
+      }
+    }
+  },
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@': resolve('src')
       }
     }
   }

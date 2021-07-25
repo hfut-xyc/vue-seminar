@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="nav-bar">
-      <van-icon name="search"/>
       <span class="title">报告汇</span>
     </div>
     <router-view></router-view>
+    <div style="height: 3rem;"></div>
     <van-tabbar v-model="active" route active-color="red" inactive-color="grey">
       <van-tabbar-item to="/home/index" icon="wap-home-o">首页</van-tabbar-item>
       <van-tabbar-item to="/home/category" icon="apps-o">分类</van-tabbar-item>
@@ -22,6 +22,13 @@
       return {
         active: 0
       }
+    },
+    created() {
+      this.$store.dispatch('user/info').then(() => {
+        console.log('userinfo success')
+      }).catch(err => {
+        console.log(err)
+      })
     }
   }
 </script>
@@ -30,7 +37,7 @@
   .nav-bar {
     display: flex;
     align-items: center;
-    padding: 15px 10px 15px;
+    padding: 15px 10px;
     background-color: #e60001;
     font-size: large;
     font-weight: bold;

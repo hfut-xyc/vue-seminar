@@ -21,14 +21,13 @@
       <van-field
         v-model="passwordConfirm" name="passwordConfirm" label="确认密码" placeholder="请输入密码"
         left-icon="smile-o" type="password"
-        :rules="[{ required: true, message: '密码不能为空' }]"
+        :rules="[{ required: true, message: '确认密码不能为空' }]"
       />
       <div class="btn-group">
         <van-button class="btn" native-type="submit" type="danger" round block>立即注册</van-button>
         <van-button class="btn" @click="onReturn" type="danger" plain round block>返回</van-button>
       </div>
     </van-form>
-
   </div>
 </template>
 

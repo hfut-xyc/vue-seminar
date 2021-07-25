@@ -6,7 +6,8 @@
 </template>
 
 <script>
-  import Report from "../components/Report";
+  import Report from "../../components/Report"
+  import {getRequest} from '@/utils/request'
 
   export default {
     name: "FavReport",
@@ -15,23 +16,20 @@
     },
     data() {
       return {
-        favList: []
+        favList: [],
+        id: this.$store.getters.id
       }
     },
     mounted() {
-      this.getFavReportList();
+      getRequest(`/user/${this.id}/report/fav`).then(res => {
+        this.favList = res.data.data;
+        this.$toast(res.data.message)
+      }).catch(err => {
+        this.$toast.fail("请求异常")
+      })
     },
 
     methods: {
-      getFavReportList() {
-        this.$axios.get("/user/1/report/fav").then(res => {
-          console.log(res)
-          this.favList = res.data.data;
-          this.$toast(res.data.message)
-        }).catch(err => {
-          this.$toast.fail("请求已超时")
-        })
-      },
       onClickLeft() {
         this.$router.back()
       }

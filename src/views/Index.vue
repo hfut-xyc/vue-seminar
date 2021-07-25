@@ -7,7 +7,8 @@
 </template>
 
 <script>
-  import Report from "../components/Report";
+  import Report from "@/components/Report"
+  import {getRequest} from "@/utils/request"
 
   export default {
     name: 'Index',
@@ -28,14 +29,15 @@
 
     methods: {
       getReportList(refresh) {
-        this.$axios.get("/report/list").then(res => {
+        getRequest("/report/list").then(res => {
+          // 随机打乱数据，模拟刷新
           if (refresh) {
             this.shuffle(res.data.data)
           }
           this.reportList = res.data.data;
           this.$toast(res.data.message)
         }).catch(err => {
-          this.$toast.fail("请求已超时")
+          this.$toast.fail("请求异常")
         })
       },
 
