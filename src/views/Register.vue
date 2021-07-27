@@ -19,9 +19,9 @@
         :rules="[{ required: true, message: '密码不能为空' }]"
       />
       <van-field
-        v-model="passwordConfirm" name="passwordConfirm" label="确认密码" placeholder="请输入密码"
+        v-model="passwordConfirm" name="passwordConfirm" label="确认密码" placeholder="请输入确认密码"
         left-icon="smile-o" type="password"
-        :rules="[{ required: true, message: '确认密码不能为空' }]"
+        :rules="[{ required: true, validator: validatePassword, message: '两次密码不一致'}]"
       />
       <div class="btn-group">
         <van-button class="btn" native-type="submit" type="danger" round block>立即注册</van-button>
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+  import {postRequest} from "@/utils/request"
+
   export default {
     name: "Register",
     data() {
@@ -42,13 +44,26 @@
       }
     },
     methods: {
-      onSubmit(form) {
-        console.log(form);
-        this.$router.push("/login");
+      validatePassword() {
+        return this.password === this.passwordConfirm
       },
+
+      onSubmit(form) {
+        postRequest("/user/register", form).then(res => {
+          if (res.data.code === -1) {
+            this.$toast.fail(res.data.message)
+          } else {
+            this.$toast.success(res.data.message)
+            this.$router.push("/login");
+          }
+        }).catch(err => {
+          this.$toast.fail("注册失败")
+        })
+      },
+
       onReturn() {
         this.$router.push("/login")
-      }
+      },
     }
   }
 </script>
