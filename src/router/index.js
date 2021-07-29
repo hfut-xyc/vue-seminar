@@ -7,7 +7,7 @@ Vue.use(Router)
 const routes = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/login'
   },
   {
     path: '/login',
@@ -31,15 +31,15 @@ const routes = [
   },
   {
     path: "/fav/report",
-    component: () => import('@/views/profile/FavReport')
+    component: () => import('@/views/fav/FavReport')
   },
   {
     path: "/fav/city",
-    component: () => import('@/views/profile/FavCity')
+    component: () => import('@/views/fav/FavCity')
   },
   {
     path: "/fav/subject",
-    component: () => import('@/views/profile/FavSubject')
+    component: () => import('@/views/fav/FavSubject')
   },
   {
     path: '/home',
@@ -55,15 +55,15 @@ const routes = [
       },
       {
         path: 'category',
-        component: () => import('@/views/category/Category')
+        component: () => import('@/views/Category')
       },
       {
         path: 'notice',
         component: () => import('@/views/Notice')
       },
       {
-        path: "profile",
-        component: () => import('@/views/profile/Profile')
+        path: "mine",
+        component: () => import('@/views/Mine')
       }
     ]
   }
@@ -79,7 +79,7 @@ const whiteList = ['/login', '/register']
 router.beforeEach((to, from, next) => {
   const hasToken = getToken()
   if (hasToken) {
-    if (to.path === '/login') {
+    if (to.path === '/login' || to.path === '/register') {
       next("/home")
     } else {
       next()

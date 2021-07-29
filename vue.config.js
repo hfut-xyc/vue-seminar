@@ -9,15 +9,15 @@ module.exports = {
   devServer: {
     port: 8080,
     open: true,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:8081',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''
-        }
-      }
-    }
+    // proxy: {
+    //   '/': {
+    //     target: 'http://192.168.0.102:8081',
+    //     changeOrigin: true,
+    //     pathRewrite: {
+    //       '^/': ''
+    //     }
+    //   }
+    // }
   },
   configureWebpack: {
     resolve: {

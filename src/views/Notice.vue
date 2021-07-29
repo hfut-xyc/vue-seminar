@@ -19,14 +19,14 @@
         messageList: [
           {
             id: 1,
-            icon: "#",
+            icon: require("@/assets/logo.png"),
             title: "系统通知",
             detail: "您收藏的报告即将开始",
             time: "05-09"
           },
           {
             id: 2,
-            icon: "#",
+            icon: require("@/assets/logo.png"),
             title: "系统通知",
             detail: "您关注的学科有新的报告",
             time: "05-11"

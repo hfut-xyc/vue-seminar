@@ -22,12 +22,12 @@
   import { Dialog } from 'vant';
 
   export default {
-    name: "Profile",
+    name: "Mine",
     data() {
       return {
         id: this.$store.getters.id,
         username: this.$store.getters.name,
-        avatar: require("../../assets/logo.png")
+        avatar: require("@/assets/logo.png")
       }
     },
     methods: {

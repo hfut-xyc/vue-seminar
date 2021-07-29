@@ -9,7 +9,7 @@
       <van-tabbar-item to="/home/index" icon="wap-home-o">首页</van-tabbar-item>
       <van-tabbar-item to="/home/category" icon="apps-o">分类</van-tabbar-item>
       <van-tabbar-item to="/home/notice" icon="bell">消息</van-tabbar-item>
-      <van-tabbar-item to="/home/profile" icon="friends">我的</van-tabbar-item>
+      <van-tabbar-item to="/home/mine" icon="friends">我的</van-tabbar-item>
     </van-tabbar>
   </div>
 

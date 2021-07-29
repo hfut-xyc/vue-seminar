@@ -30,9 +30,14 @@ const actions = {
         username: username.trim(),
         password: password.trim()
       }).then(res => {
-        commit('SET_TOKEN', res.data)
-        setToken(res.data)
-        resolve()
+        if (res.data.code === 0) {
+          const token = res.data.data
+          commit('SET_TOKEN', token)
+          setToken(token)
+          resolve()
+        } else {
+          reject(res.data.message)
+        }
       }).catch(err => {
         reject(err)
       })

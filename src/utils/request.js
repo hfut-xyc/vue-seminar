@@ -1,17 +1,16 @@
 import axios from 'axios'
-import store from '@/store'
 import { getToken } from '@/utils/token'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: '/api',
+  baseURL: 'http://192.168.0.102:8081/',
   timeout: 3000
 })
 
 // request interceptor
 service.interceptors.request.use(
   config => {
-    if (store.getters.token) {
+    if (getToken()) {
       config.headers['Authorization'] = getToken()
     }
     return config

@@ -44,8 +44,7 @@
         this.$store.dispatch('user/login', form).then(() => {
           this.$router.replace("/home")
         }).catch(err => {
-          console.log(err)
-          this.$toast.fail("登录失败")
+          this.$toast.fail(err)
         })
       },
 
@@ -101,7 +100,7 @@
   }
 
   .register-link {
-    color: #ff9d50;
+    color: #ff5a88;
     font-weight: bold;
   }
 
