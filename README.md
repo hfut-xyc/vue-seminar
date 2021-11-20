@@ -1,16 +1,20 @@
-# vue-h5
+## Introduction
+- 报告汇，基于 Vue.js2 开发的 WebAPP
+- 界面组件库使用的是有赞提供的 [Vant](https://vant-contrib.gitee.io/vant/#/zh-CN/)
+- 服务端的代码移步 [api-seminar](https://github.com/hfut-xyc/api-seminar)
 
-## Project setup
+## Run
+- 先安装依赖
 ```
 npm install
 ```
-
-### Compiles and hot-reloads for development
+- 打开`vue.config.js`，设置 publicPath 为 '/'
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Depolyment
+- 打开`vue.config.js`，设置 publicPath 为 './'
 ```
 npm run build
 ```

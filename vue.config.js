@@ -5,19 +5,20 @@ function resolve(dir) {
 }
 
 module.exports = {
-  publicPath: './',
+  // publicPath: './',  // production environment
+  publicPath: '/',      // development environment
   devServer: {
     port: 8080,
     open: true,
-    // proxy: {
-    //   '/': {
-    //     target: 'http://192.168.0.102:8081',
-    //     changeOrigin: true,
-    //     pathRewrite: {
-    //       '^/': ''
-    //     }
-    //   }
-    // }
+    proxy: {
+      '/': {
+        target: 'http://localhost:8081',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/': ''
+        }
+      }
+    }
   },
   configureWebpack: {
     resolve: {

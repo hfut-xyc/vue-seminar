@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import { getToken, removeToken } from '@/utils/token'
+import { getToken } from '@/utils/token'
 
 Vue.use(Router)
 
@@ -70,7 +70,8 @@ const routes = [
 ]
 
 const router = new Router({
-  mode: 'hash',
+  // mode: 'hash',  // production environment
+  mode: 'history',  // development environment
   routes: routes
 })
 
@@ -79,7 +80,7 @@ const whiteList = ['/login', '/register']
 router.beforeEach((to, from, next) => {
   const hasToken = getToken()
   if (hasToken) {
-    if (to.path === '/login' || to.path === '/register') {
+    if (whiteList.indexOf(to.path) !== -1) {
       next("/home")
     } else {
       next()
