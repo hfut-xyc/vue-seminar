@@ -4,7 +4,7 @@ import { getToken } from '@/utils/token'
 // create an axios instance
 const service = axios.create({
   // baseURL: 'http://localhost:8081/',
-  baseURL: '/',
+  baseURL: '/api',
   timeout: 3000
 })
 

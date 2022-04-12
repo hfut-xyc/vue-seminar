@@ -80,7 +80,7 @@ const whiteList = ['/login', '/register']
 router.beforeEach((to, from, next) => {
   const hasToken = getToken()
   if (hasToken) {
-    if (whiteList.indexOf(to.path) !== -1) {
+    if (whiteList.indexOf(to.path) !== -1) {  // 已经登录，还要访问登录和注册页面，直接弹回主页
       next("/home")
     } else {
       next()
@@ -89,7 +89,7 @@ router.beforeEach((to, from, next) => {
     if (whiteList.indexOf(to.path) !== -1) {
       next()
     } else {
-      next(`/login?redirect=${to.path}`)
+      next(`/login?redirect=${to.path}`)      // 还未登录，访问主页面，直接弹回登录页
     }
   }
 })
